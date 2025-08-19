@@ -1,0 +1,32 @@
+
+*{
+  margin: 0;
+  box-sizing: border-box;
+}
+.bg-green-100{
+  background-color: rgb(207, 207, 207);
+}
+.j1{
+  color: #FFFFFF;
+  margin-top: 0px;
+  min-height: auto;
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  font-weight: 500;
+  margin-bottom: 3px;
+  text-decoration: none;
+}
+
+/* For modern browsers */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #FEFCEF;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #FEFCEF; /* gray-700 */
+  border-radius: 9999px;
+  border: 2px solid #FEFCEF;
+}
