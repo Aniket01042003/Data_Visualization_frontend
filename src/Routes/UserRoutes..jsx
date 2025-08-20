@@ -12,28 +12,30 @@ import Graph2D from '../component/2dchart/Graph2D.jsx';
 import Graph3D from '../component/3dgraph/Graph3D.jsx';
 import AdminLoginForm from '../component/LoginReg/AdminLoginForm.jsx';
 import Footer from '../footer/Footer.jsx';
+import GoogleCallback from '../component/LoginReg/GoogleCallback.jsx';
 
 const UserRoutes = () => {
     return (
         <div>
             <div>
-                <Navbar/>
+                <Navbar />
             </div>
             <Routes>
-                <Route path="/" element={<Home/>} />
-                <Route path="/login" element={<Login/>} />
-                <Route path="/admin-login" element={<AdminLoginForm/>} />
-                <Route path="/register" element={<Register/>} />
-                <Route path="/contact" element={<ContactUs/>} />
-                <Route path="/about" element={<About/>} />
-                <Route path="/profile" element={<Profile/>} />
-                <Route path="/showdataset" element={<ShowDataset/>} />
-                <Route path="/2dchart/:id" element={<Graph2D/>} />
-                <Route path="/3dgraph/:id" element={<Graph3D/>} />
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/admin-login" element={<AdminLoginForm />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/contact" element={<ContactUs />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/showdataset" element={<ShowDataset />} />
+                <Route path="/2dchart/:id" element={<Graph2D />} />
+                <Route path="/3dgraph/:id" element={<Graph3D />} />
+                <Route path="/auth/google/callback" element={<GoogleCallback />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
             <div>
-                <Footer/>
+                <Footer />
             </div>
         </div >
     );
