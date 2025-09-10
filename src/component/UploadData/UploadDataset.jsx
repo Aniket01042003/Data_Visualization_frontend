@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FaRegFileLines } from "react-icons/fa6";
+import { IoDownloadOutline } from "react-icons/io5";
 
 import { toast } from "react-toastify";
 import { clearDataset, uploadDataset } from "../../Redux/uploadData/Action";
@@ -32,7 +33,7 @@ const UploadDataset = () => {
         }
     };
 
-        
+
     const handleUpload = () => {
         if (!isAuthenticated) {
             toast.error("Please log in first.");
@@ -43,7 +44,7 @@ const UploadDataset = () => {
             return;
         }
         dispatch(uploadDataset(file));
-    };      
+    };
 
     useEffect(() => {
         if (dataset) {
@@ -56,19 +57,36 @@ const UploadDataset = () => {
         if (error) {
             toast.error(error);
         }
-    }, [dataset,error]);
+    }, [dataset, error]);
+
+    const handleDownload = () => {
+        // Example: downloading a file from public folder
+        const link = document.createElement("a");
+        link.href = "/example.xlsx"; // replace with your file path or API link
+        link.download = "format.xlsx"; // rename the file if you want
+        link.click();
+    };
 
     return (
         <div className="relative min-h-screen flex items-center justify-center bg-[#0A0A0A]">
             <div className="relative w-full max-w-7xl p-0">
                 <div className="grid p-0 lg:grid-cols-2 items-center">
-                    <div className="text-center lg:text-left">
+                    <div className="flex flex-col text-center lg:text-left">
                         <h1 className="text-5xl font-bold text-white">
                             Upload <span className="text-cyan-400">Excel File</span>
                         </h1>
                         <p className="text-lg text-white/60 max-w-xl mx-auto lg:mx-0">
                             Upload your dataset to visualize and analyze.
                         </p>
+                        <div className="flex items-center text-white">
+                            xlsx file format to upload
+                            <button
+                                onClick={handleDownload}
+                                className="px-2 m-2 py-2 min-w-5 bg-blue-600 flex items-center justify-center text-white font-medium rounded-lg whitespace-nowrap shadow-md hover:bg-blue-700 transition-all"
+                            >
+                                <span className="px-2">xlsx format.xlsx </span><IoDownloadOutline />
+                            </button>
+                        </div>
                     </div>
 
                     {/* File Upload Section */}
@@ -76,7 +94,7 @@ const UploadDataset = () => {
                         <div className="relative w-[300px] rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-lg border border-white/10 shadow-2xl">
                             <div className="w-full py-9 rounded-2xl border border-gray-300 gap-3 grid border-dashed">
                                 <div className="flex gap-2 flex-col justify-center items-center">
-                                    <FaRegFileLines className="h-[2rem] w-[2rem] text-white" />
+                                    <FaRegFileLines style={{ height: "2rem", width: "2rem" }} className=" text-white" />
                                     <h2 className="text-center text-white text-xs">
                                         Only .xlsx, .xlsm, .xlsb, and .xltx files are allowed.
                                     </h2>
@@ -94,7 +112,7 @@ const UploadDataset = () => {
                                                 onChange={handleFileChange}
                                             />
                                             <div className="flex w-32 h-9 px-2 flex-col bg-indigo-600 rounded-full shadow text-white text-xs font-semibold items-center justify-center cursor-pointer">
-                                                {file?.name ||"Choose File"}
+                                                {file?.name || "Choose File"}
                                             </div>
                                         </label>
                                     </div>
