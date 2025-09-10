@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUser, googlelogin, login } from "../../Redux/Auth/Action";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { API_BASE_URL } from "../../utils/apiConfig";
 
 const Login = () => {
@@ -12,7 +12,7 @@ const Login = () => {
   const { error, message } = useSelector((store) => store.auth);
   const [showDelayMsg, setShowDelayMsg] = useState(false);
 
-  useEffect(() => {
+ useEffect(() => {
     const params = new URLSearchParams(location.search);
     const token = params.get("token");
     if (token) {
@@ -20,9 +20,10 @@ const Login = () => {
       dispatch(googlelogin(token));
       dispatch(getUser(token));
       toast.success("Google Login Successful!");
-      // setTimeout(() => navigate("/"), 1000);
+      setTimeout(() => navigate("/"), 1000);
     }
   }, [location]);
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
