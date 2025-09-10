@@ -71,22 +71,23 @@ const UploadDataset = () => {
         <div className="relative min-h-screen flex items-center justify-center bg-[#0A0A0A]">
             <div className="relative w-full max-w-7xl p-0">
                 <div className="grid p-0 lg:grid-cols-2 items-center">
-                    <div className="flex flex-col text-center lg:text-left">
+                    <div className={`flex flex-col text-center lg:text-left`}>
                         <h1 className="text-5xl font-bold text-white">
                             Upload <span className="text-cyan-400">Excel File</span>
                         </h1>
-                        <p className="text-lg text-white/60 max-w-xl mx-auto lg:mx-0">
+                        <p className={`text-lg text-white/60 ${window.innerWidth < 390 ? "flex flex-col items-center" : ""} max-w-xl mx-auto lg:mx-0`}>
                             Upload your dataset to visualize and analyze.
+                            <div className={`flex flex-wrap ${window.innerWidth < 390 ? "justify-center items-center" : ""} items-center text-white`}>
+                                xlsx file format to upload
+                                <button
+                                    onClick={handleDownload}
+                                    className="px-2 m-2 py-2 min-w-5 bg-blue-600 flex items-center justify-center text-white font-medium rounded-lg whitespace-nowrap shadow-md hover:bg-blue-700 transition-all"
+                                >
+                                    <span className="px-2">xlsx format.xlsx </span><IoDownloadOutline />
+                                </button>
+                            </div>
                         </p>
-                        <div className="flex items-center text-white">
-                            xlsx file format to upload
-                            <button
-                                onClick={handleDownload}
-                                className="px-2 m-2 py-2 min-w-5 bg-blue-600 flex items-center justify-center text-white font-medium rounded-lg whitespace-nowrap shadow-md hover:bg-blue-700 transition-all"
-                            >
-                                <span className="px-2">xlsx format.xlsx </span><IoDownloadOutline />
-                            </button>
-                        </div>
+
                     </div>
 
                     {/* File Upload Section */}
