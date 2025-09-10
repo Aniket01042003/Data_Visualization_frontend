@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser, googlelogin, login } from "../../Redux/Auth/Action";
 import { toast } from "react-toastify";
@@ -10,6 +10,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { error, message } = useSelector((store) => store.auth);
+  const [showDelayMsg, setShowDelayMsg] = useState(false);
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -19,7 +20,7 @@ const Login = () => {
       dispatch(googlelogin(token));
       dispatch(getUser(token));
       toast.success("Google Login Successful!");
-      setTimeout(() => navigate("/"), 1000);
+      // setTimeout(() => navigate("/"), 1000);
     }
   }, [location]);
 
@@ -41,6 +42,40 @@ const Login = () => {
       })
       .catch(() => toast.error("Something went wrong. Try again!"));
   };
+
+
+
+  const loading = useSelector((store) => store.auth.isLoading);
+  // const loading = true
+
+
+  useEffect(() => {
+    let timer;
+    if (loading) {
+      timer = setTimeout(() => {
+        setShowDelayMsg(true);
+      }, 4000);
+    } else {
+      setShowDelayMsg(false);
+    }
+    return () => clearTimeout(timer);
+  }, [loading]);
+
+  let toastId = null;
+
+  useEffect(() => {
+    if (showDelayMsg) {
+      toastId = toast.info(
+        "login first time backend on 'render.com' preparing wait 15sec",
+        { autoClose: 15000 } 
+      );
+    } 
+  }, [showDelayMsg]);
+
+  if(!loading && showDelayMsg){
+    toast.dismiss(toastId);
+  }
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br  flex items-center justify-center from-black via-gray-900 to-black text-[#00acc1] py-10 px-4">

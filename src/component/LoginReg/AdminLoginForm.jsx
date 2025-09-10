@@ -64,6 +64,7 @@ const AdminLoginForm = () => {
               id="email"
               name="email"
               type="email"
+              defaultValue={'admin@gmail.com'}
               required
               placeholder="Enter your email"
               className="mt-1 w-full px-4 py-2 rounded-md bg-black border border-[#00acc1] text-white placeholder:text-[#00acc1]/50 focus:outline-none focus:ring-2 focus:ring-[#00acc1]"
@@ -81,6 +82,7 @@ const AdminLoginForm = () => {
               id="password"
               name="password"
               type="password"
+              defaultValue={'12345678'}
               required
               placeholder="Enter your password"
               className="mt-1 w-full px-4 py-2 rounded-md bg-black border border-[#00acc1] text-white placeholder:text-[#00acc1]/50 focus:outline-none focus:ring-2 focus:ring-[#00acc1]"
